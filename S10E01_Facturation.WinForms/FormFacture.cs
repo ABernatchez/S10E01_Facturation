@@ -28,8 +28,7 @@ public sealed partial class FormFacture : Form, IObserver<EtatCommandeDto>
         }
 
         AfficherEtat(m_modele.Consulter());
-        // S10-A : conserver l’abonnement retourné par la source.
-        m_abonnement = null; // À remplacer.
+        m_abonnement = m_modele.Subscribe(this);
     }
 
     public void OnNext(EtatCommandeDto etat)
@@ -40,14 +39,16 @@ public sealed partial class FormFacture : Form, IObserver<EtatCommandeDto>
     private void AfficherEtat(EtatCommandeDto etat)
     {
         ArgumentNullException.ThrowIfNull(etat);
-        // S10-V : afficher les montants reçus et le statut, sans les recalculer.
-        lResumeFacture.Text = "Affichage de la facture à compléter (S10-V).";
+        lResumeFacture.Text = $"Numéro commande: {etat.Facture.NumeroCommande}\n";
+        lResumeFacture.Text += $"Sous-total: {etat.Facture.SousTotal:0.00}\n";
+        lResumeFacture.Text += $"Frais: {etat.Facture.Frais:0.00}\n";
+        lResumeFacture.Text += $"Total: {etat.Facture.Total:0.00}\n";
+        lResumeFacture.Text += $"Est provisoire: {etat.Facture.EstProvisoire}\n";
     }
 
     private void FormFacture_Disposed(object? sender, EventArgs e)
     {
-        // S10-D : appeler la méthode SeDesabonner fournie.
-        // À compléter : appeler la méthode fournie.
+        SeDesabonner();
     }
 
     // Fourni : le nettoyage peut être demandé plusieurs fois.
@@ -74,4 +75,8 @@ public sealed partial class FormFacture : Form, IObserver<EtatCommandeDto>
         lResumeFacture.Text += "\nNotifications terminées.";
     }
 
+    private void lResumeFacture_Click(object sender, EventArgs e)
+    {
+
+    }
 }

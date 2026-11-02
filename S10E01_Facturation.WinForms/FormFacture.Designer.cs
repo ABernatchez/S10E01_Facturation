@@ -19,19 +19,26 @@ partial class FormFacture
     {
         lResumeFacture = new Label();
         SuspendLayout();
+        // 
         // lResumeFacture
-        lResumeFacture.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        lResumeFacture.Location = new Point(20, 20);
-        lResumeFacture.Name = "lResumeFacture";
-        lResumeFacture.Size = new Size(440, 240);
-        lResumeFacture.Text = "Facture de consultation";
+        // 
         lResumeFacture.AccessibleName = "Résumé de facture";
+        lResumeFacture.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        lResumeFacture.Location = new Point(23, 27);
+        lResumeFacture.Name = "lResumeFacture";
+        lResumeFacture.Size = new Size(503, 320);
+        lResumeFacture.TabIndex = 0;
+        lResumeFacture.Text = "Facture de consultation";
+        lResumeFacture.Click += lResumeFacture_Click;
+        // 
         // FormFacture
-        AutoScaleDimensions = new SizeF(7F, 15F);
+        // 
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(480, 280);
+        ClientSize = new Size(549, 373);
         Controls.Add(lResumeFacture);
-        MinimumSize = new Size(460, 300);
+        Margin = new Padding(3, 4, 3, 4);
+        MinimumSize = new Size(523, 384);
         Name = "FormFacture";
         StartPosition = FormStartPosition.CenterParent;
         Text = "Facture de consultation";
